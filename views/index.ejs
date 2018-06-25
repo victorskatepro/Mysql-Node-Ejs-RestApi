@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Libreria CRUD</title>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <h2 align="center"><span class="fa fa-book"></span> Libreria</h2>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/nuevo" >Nuevo</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <br><br>
+        <% if(lista.length>0){%>
+        <% for(var i=0; i<lista.length; i++) {%>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+            <div class="card" style="width: 18rem;" >
+                <img class="card-img-top img-responsive" src="<%= lista[i].imagen %>">
+                <div class="card-body">
+                    <h4 class="card-title" align="center" style="padding: 10px">
+                        <%= lista[i].titulo %>
+                    </h4>
+                    <p class="card-text" style="padding: 10px"><%= lista[i].resumen %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Fecha: <%= lista[i].fecha %></li>
+                </ul>
+                <div class="card-footer">
+                    <a href="/editar/<%= lista[i].id %>" class="card-link">Editar</a>
+                    <a href="/eliminar/<%= lista[i].id %>" onclick="return confirm('¿Desea eleminar este libro?');" class="card-link">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <%} else {%>
+        <p class="alert alert-warning">No contiene libros</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
